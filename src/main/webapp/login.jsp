@@ -1,12 +1,11 @@
 <%@ page import="java.sql.*"%>
 <%
-    String username = request.getParameter("username");    
-    String password = request.getParameter("password");
+    String username = request.getParameter("swapnil");    
+    String password = request.getParameter("swapnil");
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/loginwebapp",
-            "root", "root");
+    Connection con = DriverManager.getConnection("","", "");
     Statement st = con.createStatement();
-    String query = "SELECT username,password from USER1 where username='" + username + "' and password='" +password + "'";
+    String query = "SELECT username,password from loginwebapp.USER1 where username='" + username + "' and password='" +password + "'";
     ResultSet rs;
     rs = st.executeQuery(query);
 

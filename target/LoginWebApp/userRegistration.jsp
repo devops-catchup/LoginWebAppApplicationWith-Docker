@@ -8,8 +8,7 @@
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/loginwebapp","root", "root");
 
-    String query = "INSERT INTO USER1 (first_name, last_name, email, username, password)"
-			+ "VALUES ('"+firstName+"','"+lastName+"','"+email+"','"+username+"','"+password+"')";
+    String query = "INSERT INTO loginwebapp.USER1 (first_name, last_name, email, username, password)"+ "VALUES ('"+firstName+"','"+lastName+"','"+email+"','"+username+"','"+password+"')";
 
     Statement st = con.createStatement();
     int i = st.executeUpdate(query);
