@@ -25,6 +25,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>LoginWebApp</finalName>
+		<finalName>LoginWebApplication</finalName>
 	</build>
 </project>
