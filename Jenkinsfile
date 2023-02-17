@@ -18,6 +18,15 @@ pipeline {
 		stage('Docker build'){
 		    steps {
 			
-			sh 'docker build -t swapnilhub/pipelineimage .'
+			sh 'docker build -t swapnilhub/pipelineimage1 .'
+			}}
+		stage('Push Docker image'){
+		    steps {
+			withCredentials([string(credentialsId: 'swapnil-dockerhub', variable: 'Dockerhub-Credentials')]) {
+			
+			sh 'docker login -u swapnilhub -p ${Dockerhub-Credentials}'
+
+			sh 'docker push swapnilhub/pipelineimage1'
+			}
 			}}
 }}
