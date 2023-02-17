@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+
+	environment {     
+    		DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')     
+  		}  
 	
 	stages {
 	    stage('Checkout') {
@@ -20,13 +24,9 @@ pipeline {
 			
 			sh 'docker build -t swapnilhub/pipelineimage1 .'
 			}}
-		stage('Push Docker image'){
+		stage('Docker Login'){
 		    steps {
-			withCredentials([string(credentialsId: 'swapnil-dockerhub', variable: 'Dockerhub-Credentials')]) {
-			
-			sh 'docker login --username swapnilhub --password-stdin $Dockerhub-Credentials'
-
-			sh 'docker push swapnilhub/pipelineimage1'
-			}
+			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
+			echo 'Login Completed'
 			}}
 }}
