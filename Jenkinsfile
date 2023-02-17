@@ -13,7 +13,7 @@ pipeline {
 		stage('Deployment'){
 		    steps {
 			
-			sh 'cp target/LoginWebAppApplicationWith-Docker.war swapnil@127.0.1.1:/home/swapnil/Documents/GRRAS/apache-tomcat-8.5.35/webapps'
+			sh 'cp target/LoginWebAppApplicationWith-Docker.war /home/swapnil/Documents/GRRAS/apache-tomcat-8.5.35/webapps'
 			}}
 		stage('Docker build'){
 		    steps {
