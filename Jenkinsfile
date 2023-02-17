@@ -15,7 +15,7 @@ pipeline {
 			
 			sh 'cp target/LoginWebApp.war swapnil@127.0.1.1:/home/swapnil/Documents/GRRAS/apache-tomcat-8.5.35/webapps'
 			}}
-		Stage('Docker build'){
+		stage('Docker build'){
 		    steps {
 			
 			sh 'sudo docker build -t swapnilhub/pipelineimage .'
