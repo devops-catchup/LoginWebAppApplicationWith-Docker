@@ -26,8 +26,11 @@ pipeline {
 			}}
 		stage('Docker Login'){
 		    steps {
-			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
+			withCredentials([usernameColonPassword(credentialsId: 'dockerhubcredentials', variable: 'dockerhub_crede')]) {
+    		sh 'docker login -u swapnilhub -p${dockerhub_crede}'                 
 			echo 'Login Completed'
+			}
+			
 			}}
 		stage('Push Image to Docker Hub') {         
     		    steps{                            
