@@ -22,11 +22,16 @@ pipeline {
 		stage('Docker build'){
 		    steps {
 			
-			sh 'docker build -t swapnilhub/pipelineimage1 .'
+			sh 'docker build -t swapnilhub/pipelineimage11 .'
 			}}
 		stage('Docker Login'){
 		    steps {
 			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
 			echo 'Login Completed'
 			}}
+		stage('Push Image to Docker Hub') {         
+    		    steps{                            
+ 			sh 'sudo docker push swapnilhub/pipelineimage11:$BUILD_NUMBER'           
+			echo 'Push Image Completed'       
+    			}}  
 }}
