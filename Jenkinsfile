@@ -18,6 +18,6 @@ pipeline {
 		stage('Docker build'){
 		    steps {
 			
-			sh 'sudo docker build -t swapnilhub/pipelineimage .'
+			sh 'docker build -t swapnilhub/pipelineimage .'
 			}}
 }}
