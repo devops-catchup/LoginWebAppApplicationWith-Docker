@@ -21,6 +21,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>LoginWebApplication</finalName>
+		<finalName>LoginWebAppApplicationWith-Docker</finalName>
 	</build>
 </project>
