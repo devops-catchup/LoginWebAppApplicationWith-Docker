@@ -24,7 +24,7 @@ pipeline {
 		    steps {
 			withCredentials([string(credentialsId: 'swapnil-dockerhub', variable: 'Dockerhub-Credentials')]) {
 			
-			sh 'docker login --username swapnilhub --password-stdin $Dockerhub-Credentials'
+			sh 'docker login --username swapnilhub --password $Dockerhub-Credentials'
 
 			sh 'docker push swapnilhub/pipelineimage1'
 			}
