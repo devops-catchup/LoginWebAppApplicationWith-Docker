@@ -1,8 +1,11 @@
-FROM ubuntu:16.04
-RUN apt-get update
-RUN apt-get install -y git
-RUN apt-get install -y vim
-RUN apt-get install -y net-tools
+# Pull the minimal Ubuntu image
+FROM nginx
 
-# ENTRYPOINT service ssh start && /bin/bash
+# update lib
+RUN apt-get update && apt-get upgrade -y
 
+# Copy the Nginx config
+COPY index.html /usr/share/nginx/html
+
+# Run the Nginx server
+ENTRYPOINT service nginx start && bash
