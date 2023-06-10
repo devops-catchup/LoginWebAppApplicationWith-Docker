@@ -18,7 +18,7 @@ pipeline {
 		stage('Docker build'){
 		    steps {
 			
-			sh 'docker build -t swapnilhub/pipelineimage11 .'
+			sh 'docker build -t swapnilhub/pipelineimage11.1 .'
 			}}
 		
 }}
