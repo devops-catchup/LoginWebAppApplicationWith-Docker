@@ -12,12 +12,10 @@ pipeline {
 	                 }}
 		stage('Deployment'){
 		    steps {
-			
 			sh 'cp target/LoginWebAppApplicationWith-Docker.war /home/swapnil/Documents/DevOps-softwares/apache-tomcat-9.0.72/webapps'
 			}}
 		stage('Docker build'){
 		    steps {
-			
 			sh 'docker build -t swapnilhub/pipelineimage11.1 .'
 			}}
 		
