@@ -24,17 +24,5 @@ pipeline {
 			
 			sh 'docker build -t swapnilhub/pipelineimage11 .'
 			}}
-		stage('Docker Login'){
-		    steps {
-			withCredentials([usernameColonPassword(credentialsId: 'dockerhubcredentials', variable: 'dockerhub_crede')]) {
-    		sh 'docker login -u swapnilhub -p${dockerhub_crede}'                 
-			echo 'Login Completed'
-			}
-			
-			}}
-		stage('Push Image to Docker Hub') {         
-    		    steps{                            
- 			sh 'sudo docker push swapnilhub/pipelineimage11:$BUILD_NUMBER'           
-			echo 'Push Image Completed'       
-    			}}  
+		
 }}
