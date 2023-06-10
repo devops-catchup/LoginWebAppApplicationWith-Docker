@@ -16,7 +16,20 @@ pipeline {
 			}}
 		stage('Docker build'){
 		    steps {
-			sh 'docker build -t swapnilhub/pipelineimage11.1 .'
+			sh 'docker build -t swapnilhub/pipelineimage11.1.1 .'
 			}}
+		stage('Docker Login'){
+		    steps {
+		withCredentials([string(credentialsId: 'swapnilhub', variable: 'docker-swapnilhub')]){
+    		sh 'docker login -u swapnilhub -p${docker-swapnilhub}'                 
+			echo 'Login Completed'
+			}
+			
+			}}
+		stage('Push Image to Docker Hub') {         
+    		    steps{                            
+ 			sh 'sudo docker push swapnilhub/pipelineimage11.1.1:$BUILD_NUMBER'           
+			echo 'Push Image Completed'       
+    			}}
 		
 }}
