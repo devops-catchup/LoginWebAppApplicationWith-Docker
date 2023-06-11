@@ -28,7 +28,7 @@ pipeline {
 			}}
 		stage('Push Image to Docker Hub') {         
     		    steps{                            
- 			sh 'sudo docker push swapnilhub/pipelineimage11.1.2:$BUILD_NUMBER'           
+ 			sh 'docker push swapnilhub/pipelineimage11.1.2:$BUILD_NUMBER'           
 			echo 'Push Image Completed'       
     			}}
 		
