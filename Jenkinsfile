@@ -13,7 +13,7 @@ pipeline {
 		stage('Build') {
 	           steps {
 			  sh 'JAVA_HOME=/home/guru/slaveDD2/jdk-11.0.18'
-			  sh 'M2_HOME=/home/guru/slaveDD2/apache-maven-3.9.0/bin/mvn install '
+			  sh 'M2_HOME=/home/guru/slaveDD2/apache-maven-3.9.0/bin/mvn install'
 	                 }}
 		stage('Deployment'){
 		    steps {
