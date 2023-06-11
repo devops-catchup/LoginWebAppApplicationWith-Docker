@@ -8,11 +8,11 @@ pipeline {
 		      }}
 		stage('Build') {
 	           steps {
-			  sh '/home/swapnil/Documents/DevOps-softwares/apache-maven-3.9.0/bin/mvn install'
+			  sh '/home/guru/slaveDD2/apache-maven-3.9.0/bin/mvn install'
 	                 }}
 		stage('Deployment'){
 		    steps {
-			sh 'cp target/LoginWebAppApplicationWith-Docker.war /home/swapnil/Documents/DevOps-softwares/apache-tomcat-9.0.72/webapps'
+			sh 'sshpass -p "dev" scp target/LoginWebAppApplicationWith-Docker.war guru@172.17.0.2:/home/guru/slaveDD2/apache-tomcat-9.0.72/webapps'
 			}}
 		stage('Docker build'){
 		    steps {
