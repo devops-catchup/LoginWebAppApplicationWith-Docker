@@ -1,6 +1,10 @@
 pipeline {
-	agent any
-	
+	agent{
+	label 'slave1'
+	}
+	parameters {
+		choice(name: 'ENVIRONMENT', choices: ['QA','UAT'], description: 'Pick Environment value')
+	}
 	stages {
 	    stage('Checkout') {
 	        steps {
