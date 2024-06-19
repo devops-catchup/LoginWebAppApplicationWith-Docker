@@ -1,3 +1,4 @@
+# this is sql file
 Step:1. create database first using below query
 
   	create database loginwebapp;
