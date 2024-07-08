@@ -13,5 +13,9 @@ pipeline {
 		stage('Deployment'){
 		   steps {
 		sh 'cp target/LoginWebAppApplicationWith-Docker.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
-			}}	
+			}}
+		stage('slack-notification'){
+		   steps {
+		     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#devops', color: 'good', message: 'This is for test', teamDomain: 'student', tokenCredentialId: 'slacktest'
+		     }}	
 }}
