@@ -1,6 +1,6 @@
 pipeline {
 	agent{
-	label 'slave-1'
+	label 'slave12'
 	}
 	stages {
 	    stage('Checkout') {
@@ -9,7 +9,7 @@ pipeline {
 		      }}
 		stage('Build') {
 	           steps {
-			  sh '/home/grras/slavedir/apache-maven-3.9.4/bin/mvn install'
+			  sh '/home/grras/slave2/apache-maven-3.9.4/bin/mvn install'
 	                 }}
 		stage('Deployment'){
 		    steps {
