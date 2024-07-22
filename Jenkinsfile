@@ -9,11 +9,10 @@ pipeline {
 		      }}
 		stage('Build') {
 	           steps {
-			  sh '/home/grras/slave2/jdk-11.0.20' 
 			  sh '/home/grras/slave2/apache-maven-3.9.4/bin/mvn install'
 	                 }}
 		stage('Deployment'){
 		    steps {
-			sh 'cp target/LoginWebAppApplicationWith-Docker.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+			sh 'cp target/LoginWebAppApplicationWith-Docker.war /home/grras/slave2/apache-tomcat-9.0.79/webapps'
 			}}	
 }}
