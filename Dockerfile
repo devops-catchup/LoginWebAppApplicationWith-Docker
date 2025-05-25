@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y curl tar && \
     tar xzvf apache-tomcat-9.0.105.tar.gz -C /opt/tomcat --strip-components=1 && \
     rm apache-tomcat-9.0.105.tar.gz
 
+COPY target/LoginWebAppApplicationWith-Docker.war $CATALINA_HOME/webapps/
+
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
