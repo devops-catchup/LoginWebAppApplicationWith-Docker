@@ -1,11 +1,5 @@
-# Pull the minimal Ubuntu image
-FROM tomcat:9.0
-
-# update lib
-RUN apt-get update && apt-get upgrade -y
-
-# Copy the Nginx config
-COPY target/LoginWebAppApplicationWith-Docker.war /usr/local/tomcat/webapps
-
-#Expose port 8080
-EXPOSE 8080
+FROM openjdk:17.0.2
+COPY . /usr/src/myapp
+WORKDIR /usr/src/myapp
+RUN ./mvnw clean package
+CMD ./mvnw cargo:run -P tomcat90
