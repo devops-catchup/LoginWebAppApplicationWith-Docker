@@ -38,7 +38,7 @@ pipeline {
             steps{
                 script{
                     withDockerRegistry(credentialsId: 'Docker-Hub', toolName: 'docker') {
-                       sh "docker build -t loginwebapp123 ."
+                       sh "docker build -t swapnilhub/loginwebapp123 ."
                        sh "docker push swapnilhub/loginwebapp123:latest"
                     }
                 }
