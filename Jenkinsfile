@@ -38,15 +38,15 @@ pipeline {
             steps{
                 script{
                     withDockerRegistry(credentialsId: 'Docker-Hub', toolName: 'docker') {
-                       sh "docker build -t swapnilhub/loginwebapp1234 ."
-                       sh "docker push swapnilhub/loginwebapp1234:latest"
+                       sh "docker build -t swapnilhub/loginwebapp134 ."
+                       sh "docker push swapnilhub/loginwebapp134:latest"
                     }
                 }
             }     
         }
         stage("Deploy using Docker container"){
             steps{
-                sh "docker run -d --name loginweb12 -p 8082:8082 swapnilhub/loginwebapp1234:latest"
+                sh "docker run -d --name loginweb2 -p 8082:8080 swapnilhub/loginwebapp134:latest"
             }
         } 
          
