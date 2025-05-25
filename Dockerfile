@@ -1,5 +1,14 @@
-FROM openjdk:17.0.2
-COPY . /usr/src/myapp
-WORKDIR /usr/src/myapp
-RUN ./mvnw clean package
-CMD ./mvnw cargo:run -P tomcat90
+# Use official Tomcat image with JDK
+FROM tomcat:9.0-jdk17
+
+# Remove default apps (optional)
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy your WAR file into Tomcat's webapps directory
+# Rename it ROOT.war to deploy at the root context, or keep yourapp.war
+COPY target/LoginWebAppApplicationWith-Docker.war /usr/local/tomcat/webapps/LoginWebAppApplicationWith-Docker.war
+
+# Expose Tomcat default port
+EXPOSE 8080
+
+# The default CMD already starts Tomcat
