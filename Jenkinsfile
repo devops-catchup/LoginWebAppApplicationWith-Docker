@@ -1,18 +1,24 @@
 pipeline {
-	agent{
-	label 'slave12'
-	}
-	stages {
-	    stage('Checkout') {
-	        steps {
-			checkout scm			       
-		      }}
-		stage('Build') {
-	           steps {
-			  sh 'JAVA_HOME=/home/grras/slave2/jdk-11.0.20 /home/grras/slave2/apache-maven-3.9.4/bin/mvn install'
-	                 }}
-		stage('Deployment'){
-		    steps {
-			sh 'cp target/LoginWebAppApplicationWith-Docker.war /home/grras/slave2/apache-tomcat-9.0.79/webapps'
-			}}	
-}}
+    agent any
+    tools{
+        jdk 'java-17'
+        maven 'Maven3.9'
+    }
+     stages{
+        stage("Git Checkout"){
+            steps{
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/devops-catchup/LoginWebAppApplicationWith-Docker.git'
+            }
+        }
+        stage("Compile"){
+            steps{
+                sh "mvn clean compile"
+            }
+        }
+         stage("Test Cases"){
+            steps{
+                sh "mvn test"
+            }
+        }
+     }
+}
