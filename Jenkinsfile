@@ -27,7 +27,12 @@ pipeline {
                     sh 'mvn sonar:sonar'   
                     }
                  }
-}
-}
+            }
+        }
+        stage("Build"){
+            steps{
+                sh " mvn clean install"
+            }
+        }
 }
 }
