@@ -11,4 +11,5 @@ COPY target/LoginWebAppApplicationWith-Docker.war /usr/local/tomcat/webapps/Logi
 # Expose Tomcat default port
 EXPOSE 8080
 
-# The default CMD already starts Tomcat
+# Start Tomcat explicitly (optional, as it's the default in the base image)
+CMD ["catalina.sh", "run"]
