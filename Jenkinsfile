@@ -36,7 +36,7 @@ pipeline {
         }
        stage("Docker Build and Image Push"){
             steps{
-                scripts{
+                script{
                     withDockerRegistry(credentialsId: 'Docker-Hub', toolName: 'docker') {
                        sh "docker build -t loginwebapp123 ."
                     }
