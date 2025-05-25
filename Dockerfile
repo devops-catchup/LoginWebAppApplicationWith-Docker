@@ -1,15 +1,19 @@
-# Use official Tomcat image with JDK
-FROM tomcat:9.0-jdk17
+FROM openjdk:17-jdk-slim
 
-# Remove default apps (optional)
-RUN rm -rf /usr/local/tomcat/webapps/*
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
 
-# Copy your WAR file into Tomcat's webapps directory
-# Rename it ROOT.war to deploy at the root context, or keep yourapp.war
-COPY target/LoginWebAppApplicationWith-Docker.war /usr/local/tomcat/webapps/LoginWebAppApplicationWith-Docker.war
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -O https://downloads.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.tar.gz && \
+    mkdir -p /opt/tomcat && \
+    tar xzvf apache-tomcat-9.0.85.tar.gz -C /opt/tomcat --strip-components=1 && \
+    rm apache-tomcat-9.0.85.tar.gz
 
-# Expose Tomcat default port
+# Copy your WAR(s)
+COPY target/LoginWebAppApplicationWith-Docker.war $CATALINA_HOME/webapps/
+
 EXPOSE 8080
 
-# Start Tomcat explicitly (optional, as it's the default in the base image)
+# Start Tomcat manually
 CMD ["catalina.sh", "run"]
