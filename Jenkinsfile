@@ -51,9 +51,19 @@ pipeline {
         } 
         stage("Deploy using Docker container"){
             steps{
-                sh "docker run -d --name=loginwebseven -p 8082:8080 swapnilhub/loginwebappseven:latest"
+                sh "docker run -d --name=loginwebseven1 -p 8083:8080 swapnilhub/loginwebappseven:latest"
             }
-        } 
-         
+        }       
 }
+post {
+     always {
+        emailext attachLog: true,
+            subject: "'${currentBuild.result}'",
+            body: "Project: ${env.JOB_NAME}<br/>" +
+                "Build Number: ${env.BUILD_NUMBER}<br/>" +
+                "URL: ${env.BUILD_URL}<br/>",
+            to: 'devops.catchup@gmail.com',  
+            attachmentsPattern: 'trivyimage.txt'
+        }
+    }
 }
